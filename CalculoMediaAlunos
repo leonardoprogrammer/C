@@ -1,0 +1,49 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <locale.h>
+
+int main() {
+	float notas[4][40], medias[40];
+	int totalA = 0, i, j, q = 0;
+	
+	while (totalA<1 || totalA>40) {
+		system("cls");
+		printf(" <> CALCULAR MEDIA DE ALUNOS <>\n");
+		printf("<!>    MAXIMA DE 40 ALUNOS   <!>\n");
+		
+		printf("\nCalcular a media de quantos alunos?\n>: ");
+		scanf("%i", &totalA);
+		if (totalA<1 || totalA>40) {
+			printf("\n<!> QUANTIDADE INVALIDA <!>\n");
+			system("pause");
+		}
+	}
+	
+	system("cls");
+	printf("<> CALCULAR MEDIA DE %i ALUNOS <>\n", totalA);
+	
+	for (i=0; i<totalA; i++) {
+		printf("\n");
+		for (j=0; j<4; j++) {
+			printf("Aluno %i - Nota do %i bimestre: ", i+1, j+1);
+			scanf("%f", &notas[j][i]);
+			medias[i] = medias[i] + notas[j][i];
+		}
+		medias[i] = medias[i] / 4;
+		if (medias[i] >= 5) {
+			q = q + 1;
+		}
+	}
+	
+	printf("\n\nTotal de alunos aprovados: %i", q);
+	
+	for (i=0; i<totalA; i++) {
+		if (medias[i] >= 5) {
+			printf("\n- Aluno %i - Media: %.1f", i+1, medias[i]);
+		}
+	}
+	
+	printf("\n\n");
+	system("pause");
+}
